@@ -1,0 +1,26 @@
+{
+  "name": "kbstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.9.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express-async-errors": "^3.1.1",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.22.2",
+    "mongodb": "^6.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}
