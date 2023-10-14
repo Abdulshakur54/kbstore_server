@@ -45,6 +45,18 @@ export default class DS {
     }
 
 
+    static async getShops() {
+
+        try {
+            return await this.db.collection('shops').find().sort({shop:1}).toArray()
+        } catch (err) {
+            error(err)
+        }
+
+    }
+  
+
+
     static async createProduct({ name, category, costPrice, image, description, created, updated }) {
         try {
             return await this.db.collection('products').insertOne({ name, category, costPrice, image, description, created, updated })
@@ -53,6 +65,29 @@ export default class DS {
         }
 
     }
+
+
+    static async getProducts() {
+
+        try {
+            return await this.db.collection('products').find().sort({name:1}).toArray()
+        } catch (err) {
+            error(err)
+        }
+
+    }
+
+    static async getShopProcucts(parentId) {
+
+        try {
+            return await this.db.collection('shopProducts').find({parentId: parentId}).sort({name:1}).toArray()
+        } catch (err) {
+            error(err)
+        }
+
+    }
+
+
     static async updateProduct({ name, category, costPrice, image, description }) {
         try {
             return await conn.withSession(async (session) => (session.withTransaction(async (session) => {
@@ -115,7 +150,7 @@ export default class DS {
         try {
             return await this.db.collection('users').find({type:"staff"}).sort({username:1}).toArray()
         } catch (err) {
-            error(err, username)
+            error(err)
         }
 
     }
@@ -125,6 +160,26 @@ export default class DS {
             return await this.db.collection('users').findOne({username})
         } catch (err) {
             error(err, username)
+        }
+
+    }
+    
+   
+    static async getCategories() {
+
+        try {
+            return await this.db.collection('categories').find().sort({name: 1}).toArray()
+        } catch (err) {
+            error(err)
+        }
+
+    }
+    static async getCategory(name) {
+
+        try {
+            return await this.db.collection('categories').findOne({name})
+        } catch (err) {
+            error(err)
         }
 
     }
@@ -139,6 +194,7 @@ export default class DS {
         }
 
     }
+
     static async updateCategory({ name, newName }) {
 
         try {
@@ -146,6 +202,7 @@ export default class DS {
                 return session.withTransaction(async (session) => {
                     await this.db.collection('shopProducts').updateMany({ category: name }, { $set: { category: newName } }, { session })
                     await this.db.collection('products').updateMany({ category: name }, { $set: { category: newName } }, { session })
+                    await this.db.collection('transactions').updateMany({ category: name }, { $set: { category: newName } }, { session })
                     return await this.db.collection('categories').findOneAndUpdate({ name }, { $set: { name: newName } }, { returnDocument: "after", session })
                 })
             })

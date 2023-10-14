@@ -2,7 +2,7 @@ import { PositiveFloatResolver, PositiveIntResolver, DateTimeResolver } from "gr
 import { createShop, updateShop, deleteShop, addShopProducts, addUsers, removeShopProduct, removeUser } from "./resolvers/shopResolver.js"
 import { createUser, updateUser, deleteUser, getUsers, getUser } from "./resolvers/userResolver.js"
 import { createProduct, updateProduct, deleteProduct } from "./resolvers/productResolver.js"
-import { createCategory, updateCategory, deleteCategory } from "./resolvers/categoryResolver.js"
+import { createCategory, updateCategory, deleteCategory, getCategories, getCategory } from "./resolvers/categoryResolver.js"
 import { idResolver } from "../utilities.js"
 export default {
     DateTime: DateTimeResolver,
@@ -12,6 +12,8 @@ export default {
         shops: () => { return [{ name: 'abcd' }, { name: 'abc' }] },
         users: getUsers,
         user: getUser,
+        categories: getCategories,
+        category: getCategory,
     },
     Mutation: {
         createShop,
@@ -34,6 +36,9 @@ export default {
 
     },
     User: {
+        id: idResolver
+    },
+    Category: {
         id: idResolver
     }
 }

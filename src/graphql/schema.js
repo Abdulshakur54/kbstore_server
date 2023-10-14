@@ -7,6 +7,8 @@ export default `#graphql
         shops: [Shop]
         users: [User]
         user(username: String!): User!
+        categories: [Category]
+        category(name: String!): Category!
         products: [Product]
         shopProduct: [ShopProduct]
     }
@@ -76,6 +78,7 @@ export default `#graphql
     }
 
     type Category{
+        id: ID!
         name: String!
         created: DateTime!
         updated: DateTime!

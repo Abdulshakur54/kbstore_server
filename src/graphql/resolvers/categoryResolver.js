@@ -21,7 +21,7 @@ const updateCategory = async (_, { name, newName }) => {
         code: 200,
         success: true,
         message: `Update was successful`,
-        category: { ...result, id: result._id }
+        category: result
     }
 }
 const deleteCategory = async (_, { name }) => {
@@ -30,7 +30,13 @@ const deleteCategory = async (_, { name }) => {
         code: 200,
         success: true,
         message: `${capitalizeEachWord(name)} was deleted successfully`,
-        category: { ...result, id: result._id }
+        category: result
     }
 }
-export { createCategory, updateCategory, deleteCategory }
+const getCategories = async () => {
+    return await DS.getCategories()
+}
+const getCategory = async (_, {name}) => {
+  return await DS.getCategory(name)
+}
+export { createCategory, updateCategory, deleteCategory, getCategories, getCategory }

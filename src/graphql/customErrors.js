@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import { capitalizeEachWord } from "../utilities.js";
-function error(err, name){
+function error(err, name=''){
     console.log(err)
     switch(err.code){
         case 11000:
