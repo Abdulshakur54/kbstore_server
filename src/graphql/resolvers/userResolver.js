@@ -37,14 +37,13 @@ const deleteUser = async (_, {username}) => {
     }
 }
 
-const getUsers = async () => {
+const getUsers = async (_,{username}) => {
 
     return await DS.getUsers()
 
 }
 
 const getUser = async (_, {username}) => {
-    return await DS.getUser(username)
-
+   return await DS.getUser(username)
 }
 export {createUser, updateUser, deleteUser,getUsers, getUser}

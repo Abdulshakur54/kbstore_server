@@ -113,7 +113,7 @@ export default class DS {
     static async getUsers() {
 
         try {
-            return await this.db.collection('users').find({type:"staff"}).toArray()
+            return await this.db.collection('users').find({type:"staff"}).sort({username:1}).toArray()
         } catch (err) {
             error(err, username)
         }
