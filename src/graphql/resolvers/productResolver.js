@@ -25,16 +25,29 @@ const updateProduct = async (_, { name, category, costPrice, image, description 
         code: 200,
         success: true,
         message: `Update was successful`,
-        product: {...result,id: result._id}
+        product: { ...result, id: result._id }
     }
 }
-const deleteProduct = async (_, { name}) => {
+const deleteProduct = async (_, { name }) => {
     const result = await DS.deleteProduct(name)
     return {
         code: 200,
         success: true,
         message: `${capitalizeEachWord(name)} was deleted successfully`,
-        product: {...result,id: result._id}
+        product: { ...result, id: result._id }
     }
 }
-export {createProduct, updateProduct, deleteProduct}
+
+const getProduct = async (_, { name }) => {
+
+    return await DS.getProduct(name)
+
+}
+
+
+const getProducts = async () => {
+
+    return await DS.getProducts()
+
+}
+export { createProduct, updateProduct, deleteProduct, getProduct, getProducts }

@@ -1,7 +1,7 @@
 import { PositiveFloatResolver, PositiveIntResolver, DateTimeResolver } from "graphql-scalars"
 import { createShop, updateShop, deleteShop, addShopProducts, addUsers, removeShopProduct, removeUser } from "./resolvers/shopResolver.js"
 import { createUser, updateUser, deleteUser, getUsers, getUser } from "./resolvers/userResolver.js"
-import { createProduct, updateProduct, deleteProduct } from "./resolvers/productResolver.js"
+import { createProduct, updateProduct, deleteProduct, getProduct, getProducts } from "./resolvers/productResolver.js"
 import { createCategory, updateCategory, deleteCategory, getCategories, getCategory } from "./resolvers/categoryResolver.js"
 import { idResolver } from "../utilities.js"
 export default {
@@ -12,6 +12,8 @@ export default {
         shops: () => { return [{ name: 'abcd' }, { name: 'abc' }] },
         users: getUsers,
         user: getUser,
+        products: getProducts,
+        product: getProduct,
         categories: getCategories,
         category: getCategory,
     },
@@ -39,6 +41,9 @@ export default {
         id: idResolver
     },
     Category: {
+        id: idResolver
+    },
+    Product: {
         id: idResolver
     }
 }

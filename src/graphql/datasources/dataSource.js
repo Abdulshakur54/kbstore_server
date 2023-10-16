@@ -77,6 +77,18 @@ export default class DS {
 
     }
 
+
+    static async getProduct(name) {
+
+        try {
+            return await this.db.collection('products').findOne({name})
+        } catch (err) {
+            error(err)
+        }
+
+    }
+
+
     static async getShopProcucts(parentId) {
 
         try {

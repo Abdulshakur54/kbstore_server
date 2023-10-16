@@ -10,6 +10,7 @@ export default `#graphql
         categories: [Category]
         category(name: String!): Category!
         products: [Product]
+        product(name: String!): Product!
         shopProduct: [ShopProduct]
     }
 
